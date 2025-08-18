@@ -1,45 +1,518 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Sijan Shrestha</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="logo">
-				<span>S.Dev</span>
-			</div>
-			<div id="main">
-				<!-- Header -->
-					<header id="header">
-						<h1>Sijan Shrestha</h1>
-						<b>STEM Intern &nbsp;&bull;&nbsp; Lavner Education </b>
-						<p>Computer Science '27 &nbsp;&bull;&nbsp; Howard University</p>
-						<b>&nbsp;&bull;&nbsp; Washington D.C &nbsp;&bull;&nbsp; </b>
-						<nav>
-							<ul>
-								<li><a href="https://www.linkedin.com/in/shrsijan/" class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
-								<li><a href="https://github.com/shrsijan" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="mailto:sijan.shrestha0112@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-						</nav>
-					</header>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 
-				<!-- Footer -->
-					<footer id="footer">
-						<span>Currently Looking for Summer 2025 Opportunities.</span>
-					</footer>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sijan Shrestha | Portfolio</title>
+	<meta name="description"
+		content="Portfolio of Sijan Shrestha – computer vision & machine learning focused developer building practical AI products." />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<style>
+		:root {
+			--background: #0a0a0a;
+			--text-primary: #f0f0f0;
+			--text-secondary: #a0a0a0;
+			--accent: #4361ee;
+			--accent-glow: rgba(67, 97, 238, 0.5);
+			--surface: #1a1a1a;
+			--border: #2a2a2a;
+		}
 
-			</div>
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: var(--background);
+			color: var(--text-primary);
+		}
+
+		.nav-link {
+			position: relative;
+			transition: color 0.3s;
+		}
+
+		.nav-link::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			bottom: -6px;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: var(--accent);
+			transition: width 0.3s ease-in-out;
+		}
+
+		.nav-link:hover,
+		.nav-link.active {
+			color: var(--text-primary);
+		}
+
+		.nav-link:hover::after,
+		.nav-link.active::after {
+			width: 100%;
+		}
+
+		.section-title {
+			position: relative;
+			padding-bottom: 8px;
+			margin-bottom: 2rem;
+		}
+
+		.section-title::after {
+			content: '';
+			position: absolute;
+			width: 80px;
+			height: 4px;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			background: linear-gradient(90deg, var(--accent), #7209b7);
+			border-radius: 2px;
+		}
+
+		.timeline-item::before {
+			content: '';
+			position: absolute;
+			width: 14px;
+			height: 14px;
+			left: -32px;
+			top: 6px;
+			background-color: var(--accent);
+			border-radius: 50%;
+			z-index: 1;
+			border: 3px solid var(--background);
+			box-shadow: 0 0 10px var(--accent-glow);
+		}
+
+		.animated-gradient {
+			background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #0a0a0a, #4361ee);
+			background-size: 400% 400%;
+			animation: gradientBG 15s ease infinite;
+		}
+
+		@keyframes gradientBG {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 50%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+
+		.fade-in-section {
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+		}
+
+		.fade-in-section.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.project-card {
+			background-color: var(--surface);
+			border: 2px solid var(--border);
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		.project-card:hover {
+			transform: translateY(-8px);
+			box-shadow: 0 0 25px var(--accent-glow);
+			border-color: var(--accent);
+		}
+
+		.skill-logo-placeholder {
+			transition: transform 0.3s, border-color 0.3s;
+			border: 2px dashed var(--border);
+			background-color: #1f1f1f;
+		}
+
+		.skill-logo-placeholder:hover {
+			transform: scale(1.1);
+			border-color: var(--accent);
+		}
+
+		/* Typography scaling */
+		.hero-title {
+			font-weight: 800;
+			line-height: 1.05;
+			font-size: clamp(2.75rem, 6vw, 4.75rem);
+			letter-spacing: -0.02em;
+		}
+
+		.hero-tagline {
+			font-size: clamp(1rem, 1.4vw + .4rem, 1.35rem);
+		}
+
+		/* Refined container max width */
+		.max-w-measure {
+			max-width: 60rem;
+		}
+
+		/* Header refinement */
+		header nav a.nav-link {
+			position: relative;
+			padding-bottom: 4px;
+		}
+
+		header nav a.nav-link.active::after {
+			width: 100%;
+		}
+
+		/* Project card subtle hover scale */
+		.project-card {
+			/* ...existing code... */
+		}
+
+		/* Additional responsive adjustments */
+		@media (max-width: 640px) {
+			.timeline-item::before {
+				left: -26px;
+				width: 10px;
+				height: 10px;
+			}
+
+			.section-title::after {
+				width: 60px;
+				height: 3px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.animated-gradient {
+				background-size: 300% 300%;
+			}
+		}
+
+		/* Ensure proper spacing on very small screens */
+		@media (max-width: 375px) {
+			.container {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+		}
+	</style>
+</head>
+
+<body class="antialiased">
+
+	<!-- Skip link -->
+	<a href="#home"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[var(--accent)] text-white px-3 py-2 rounded">Skip
+		to content</a>
+	<!-- Header & Navigation -->
+	<header id="header" class="bg-black/60 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+		<div class="container mx-auto px-5 xl:px-10 py-4 flex justify-between items-center">
+			<a href="#home" class="text-2xl md:text-3xl font-extrabold tracking-tight text-white">Sijan<span
+					class="text-[var(--accent)]">.</span></a>
+			<nav aria-label="Main navigation"
+				class="hidden md:flex items-center space-x-8 lg:space-x-10 text-base lg:text-lg">
+				<a href="#about" class="nav-link text-gray-400 font-medium">About Me</a>
+				<a href="#skills" class="nav-link text-gray-400 font-medium">Skills</a>
+				<a href="#experience" class="nav-link text-gray-400 font-medium">Experience</a>
+				<a href="#projects" class="nav-link text-gray-400 font-medium">Projects</a>
+				<a href="#contact" class="nav-link text-gray-400 font-medium">Contact</a>
+			</nav>
+			<button id="mobile-menu-button" aria-label="Toggle navigation"
+				class="md:hidden text-white p-2 rounded hover:bg-white/10">
+				<i data-lucide="menu" class="w-6 h-6"></i>
+			</button>
 		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+		<div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-lg border-t border-white/10">
+			<a href="#about" class="block py-3 px-6 text-base text-gray-200 hover:bg-white/5">About Me</a>
+			<a href="#skills" class="block py-3 px-6 text-base text-gray-200 hover:bg-white/5">Skills</a>
+			<a href="#experience" class="block py-3 px-6 text-base text-gray-200 hover:bg-white/5">Experience</a>
+			<a href="#projects" class="block py-3 px-6 text-base text-gray-200 hover:bg-white/5">Projects</a>
+			<a href="#contact" class="block py-3 px-6 text-base text-gray-200 hover:bg-white/5">Contact</a>
+		</div>
+	</header>
+
+	<main>
+		<!-- Home Section -->
+		<section id="home" class="h-[100svh] flex items-center pt-28 md:pt-32 animated-gradient fade-in-section">
+			<div class="container mx-auto px-6 xl:px-10 text-center">
+				<div class="max-w-measure mx-auto">
+					<h1 class="hero-title text-white">Sijan Shrestha</h1>
+					<p class="hero-tagline mt-5 text-gray-300 font-medium max-w-2xl mx-auto">Building ML-powered vision
+						& data systems • Python · PyTorch · C++ · Rust · Systems + Product mindset.</p>
+					<div class="mt-8 flex justify-center items-center gap-5">
+						<a href="https://linkedin.com/in/shrsijan" target="_blank" aria-label="LinkedIn"
+							class="text-gray-400 hover:text-white transition"><i data-lucide="linkedin"
+								class="w-7 h-7"></i></a>
+						<a href="https://github.com/shrsijan" target="_blank" aria-label="GitHub"
+							class="text-gray-400 hover:text-white transition"><i data-lucide="github"
+								class="w-7 h-7"></i></a>
+						<a href="mailto:sijan.shrestha0112@gmail.com" aria-label="Email"
+							class="text-gray-400 hover:text-white transition"><i data-lucide="mail"
+								class="w-7 h-7"></i></a>
+					</div>
+					<div class="mt-10">
+						<a href="sijanshrestha_resume_25.17.pdf" download="Sijan_Shrestha_Resume.pdf"
+							class="bg-[var(--accent)] text-white font-semibold px-9 py-4 rounded-lg shadow-lg hover:bg-opacity-90 transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/60 inline-block text-base tracking-wide"
+							style="box-shadow:0 0 28px -4px var(--accent-glow);">Resume</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="py-14 md:py-18 lg:py-24 fade-in-section">
+			<div class="container mx-auto px-6 xl:px-10">
+				<h2 class="section-title text-3xl sm:text-4xl font-bold text-center text-white">About</h2>
+				<div class="max-w-3xl mx-auto text-center text-gray-300 leading-relaxed">
+					<p class="text-lg md:text-xl font-medium">Hi, I am a passionate Computer Science Student with a
+						focus on building innovative solutions that leverage the power of machine learning and data
+						science. I thrive on tackling complex challenges and delivering impactful results.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Skills Section -->
+		<section id="skills"
+			class="py-12 sm:py-16 lg:py-20 bg-[var(--surface)] border-y border-[var(--border)] fade-in-section">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-3xl sm:text-4xl font-bold text-center text-white">Languages</h2>
+				<div id="skills-container"
+					class="flex justify-center items-center flex-wrap gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-8 md:gap-x-12 lg:gap-x-16 max-w-4xl mx-auto">
+					<!-- Placeholders for language logos will be injected here by JS -->
+				</div>
+			</div>
+		</section>
+
+		<!-- Experience Section -->
+		<section id="experience" class="py-12 sm:py-16 lg:py-20 fade-in-section">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-3xl sm:text-4xl font-bold text-center text-white">Experience</h2>
+				<div class="relative max-w-4xl mx-auto border-l-2 border-[var(--border)] ml-4 pl-6 sm:pl-8">
+					<!-- Timeline items will be placed here -->
+				</div>
+			</div>
+		</section>
+
+		<!-- Projects Section -->
+		<section id="projects"
+			class="py-12 sm:py-16 lg:py-20 bg-[var(--surface)] border-y border-[var(--border)] fade-in-section">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-3xl sm:text-4xl font-bold text-center text-white">Projects</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
+					<!-- Project cards will be placed here -->
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section id="contact" class="py-12 sm:py-16 lg:py-20 fade-in-section">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h2 class="section-title text-3xl sm:text-4xl font-bold text-center text-white">Get In Touch</h2>
+				<div class="max-w-3xl mx-auto">
+					<p class="text-base sm:text-lg text-gray-400 mb-6">I'm always open to discussing new
+						projects, creative ideas,
+						or opportunities. Feel free to reach out.</p>
+					<div class="mt-6">
+						<a href="mailto:sijan.shrestha0112@gmail.com"
+							class="bg-[var(--accent)] text-white font-semibold px-6 sm:px-8 py-3 rounded-lg shadow-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105 inline-block text-sm sm:text-base"
+							style="box-shadow: 0 0 20px var(--accent-glow);">
+							Say Hello
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-black py-4 sm:py-6 border-t border-white/10">
+		<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+			<p class="text-sm">&copy; 2025 Sijan Shrestha. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<script>
+		// --- DATA ---
+		const skillsData = [
+			{ name: 'Python' },
+			{ name: 'JavaScript' },
+			{ name: 'C++' },
+			{ name: 'Rust' },
+			{ name: 'SQL' },
+			{ name: 'Java' },
+		];
+
+		const experienceData = [
+			{
+				date: "June 2025 - Present",
+				title: "Undergraduate Researcher (REU)",
+				company: "University of California San Diego",
+				points: [
+					"Built a fish monitoring system using YOLO, LiDAR, and vector databases.",
+					"Prototyping a deepwater exploration camera with on-device inference for an ROV."
+				]
+			},
+			{
+				date: "Sep 2024 - Present",
+				title: "MSRC Scholar",
+				company: "Howard University",
+				points: [
+					"Engineered an OCR system improving archival efficiency by 20%.",
+					"Building an instance segmentation pipeline with Mask R-CNN in PyTorch."
+				]
+			},
+			{
+				date: "Jan 2025 - Apr 2025",
+				title: "Teaching Assistant | Intro to Data Science",
+				company: "Howard University",
+				points: [
+					"Facilitated 30+ students in Python, Pandas, NumPy, and data visualization."
+				]
+			},
+			{
+				date: "Oct 2023 - May 2024",
+				title: "Research & Technical Support Assistant",
+				company: "Howard University",
+				points: [
+					"Developed a GenAI application using LangChain, OpenAI, and Llama.",
+					"Provided technical support to over 50 stakeholders for the AIM-AHEAD Connect program."
+				]
+			}
+		];
+
+		const projectsData = [
+			{
+				title: "PantryPal",
+				description: "A real-time inventory management app with computer vision to detect and classify items, and an AI recipe engine to suggest meals.",
+				tags: ["Next.js", "Firebase", "OpenCV", "YOLO", "OpenAI"],
+			},
+			{
+				title: "ResumeMate",
+				description: "A dynamic resume builder with live template previews and an AI-powered chatbot for personalized content feedback and suggestions.",
+				tags: ["Next.js", "jsPDF", "html2canvas", "OpenAI"],
+			}
+		];
+
+		// --- DYNAMIC CONTENT INJECTION ---
+		document.addEventListener('DOMContentLoaded', () => {
+			// Populate Skills
+			const skillsContainer = document.getElementById('skills-container');
+			skillsData.forEach(skill => {
+				const skillElement = document.createElement('div');
+				skillElement.className = 'skill-logo-container text-center';
+				skillElement.innerHTML = `
+                    <!-- Add your image tag here, for example: <img src="/path/to/python.svg" alt="Python"> -->
+                    <div class="skill-logo-placeholder w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full mx-auto flex items-center justify-center">
+                        <i data-lucide="image" class="w-6 h-6 sm:w-8 sm:h-8 text-gray-600"></i>
+                    </div>
+                    <p class="mt-2 text-xs sm:text-sm text-gray-400">${skill.name}</p>
+                `;
+				skillsContainer.appendChild(skillElement);
+			});
+
+			// Populate Experience
+			const experienceContainer = document.querySelector('#experience .relative');
+			experienceData.forEach(job => {
+				const jobElement = document.createElement('div');
+				jobElement.className = 'mb-6 sm:mb-8 timeline-item';
+				jobElement.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-semibold text-white">${job.title}</h3>
+                            <p class="text-sm sm:text-md font-medium text-gray-300 mb-2">${job.company}</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-400 sm:text-right flex-shrink-0 sm:ml-4 mb-2 sm:mb-0">${job.date}</p>
+                    </div>
+                    <ul class="mt-1 list-disc list-inside text-sm sm:text-base text-gray-400 space-y-1">
+                        ${job.points.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                `;
+				experienceContainer.appendChild(jobElement);
+			});
+
+			// Populate Projects
+			const projectsContainer = document.querySelector('#projects .grid');
+			projectsData.forEach(project => {
+				const projectElement = document.createElement('div');
+				projectElement.className = 'project-card rounded-lg shadow-lg overflow-hidden p-4 sm:p-6 flex flex-col';
+				projectElement.innerHTML = `
+                    <h3 class="text-lg sm:text-xl font-bold text-white">${project.title}</h3>
+                    <p class="mt-2 text-sm sm:text-base text-gray-400 flex-grow">${project.description}</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        ${project.tags.map(tag => `<span class="bg-white/10 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">${tag}</span>`).join('')}
+                    </div>
+                `;
+				projectsContainer.appendChild(projectElement);
+			});
+
+			// Re-initialize Lucide icons
+			lucide.createIcons();
+		});
+
+		// --- INTERACTIVITY ---
+		// Lucide Icons
+		lucide.createIcons();
+
+		// Mobile Menu Toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+		mobileMenuButton.addEventListener('click', () => {
+			mobileMenu.classList.toggle('hidden');
+		});
+
+		// Active Nav Link on Scroll
+		const sections = document.querySelectorAll('section[id]');
+		const navLinks = document.querySelectorAll('nav a.nav-link');
+
+		const observerOptions = { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 };
+
+		const sectionObserver = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const id = entry.target.getAttribute('id');
+					navLinks.forEach(link => {
+						link.classList.remove('active');
+						if (link.getAttribute('href') === `#${id}`) {
+							link.classList.add('active');
+						}
+					});
+				}
+			});
+		}, observerOptions);
+
+		sections.forEach(section => sectionObserver.observe(section));
+
+		// Fade-in sections on scroll
+		const animatedSections = document.querySelectorAll('.fade-in-section');
+		const animateObserver = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.15 });
+
+		animatedSections.forEach(section => animateObserver.observe(section));
+
+		// Close mobile menu on link click
+		document.querySelectorAll('#mobile-menu a').forEach(link => {
+			link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+		});
+
+		// After dynamic nav highlighting, ensure hero link active at load
+		window.addEventListener('load', () => {
+			document.querySelector('nav a[href="#about"]').classList.remove('active');
+			document.querySelector('nav a[href="#home"]')?.classList?.add('active');
+		});
+	</script>
+</body>
+
 </html>
