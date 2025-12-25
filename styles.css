@@ -1,0 +1,1229 @@
+/* ===================================
+   Sijan Shrestha Portfolio CSS
+   Ubuntu Desktop Theme
+   =================================== */
+
+/* CSS Variables */
+:root {
+    --ubuntu-orange: #E95420;
+    --ubuntu-orange-light: #FF7847;
+    --ubuntu-purple: #772953;
+    --ubuntu-aubergine: #2C001E;
+
+    --panel-bg: rgba(20, 15, 25, 0.9);
+    --window-bg: rgba(30, 30, 30, 0.95);
+    --window-header: rgba(45, 45, 45, 0.98);
+    --dock-bg: rgba(20, 15, 25, 0.85);
+
+    --text-primary: #ffffff;
+    --text-secondary: #c9c9c9;
+    --text-muted: #888888;
+
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+
+    --shadow-window: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 30px rgba(233, 84, 32, 0.2);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2C001E 0%, #0a0510 50%, #1a0a20 100%);
+    color: var(--text-primary);
+}
+
+/* Selection */
+::selection {
+    background: var(--ubuntu-orange);
+    color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ===================================
+   Welcome Screen
+   =================================== */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(44, 0, 30, 0.95), rgba(93, 78, 132, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.welcome-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.welcome-content {
+    text-align: center;
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-wave {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(20deg);
+    }
+
+    75% {
+        transform: rotate(-20deg);
+    }
+}
+
+.welcome-greeting {
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+}
+
+.welcome-name {
+    font-size: 4.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, var(--ubuntu-orange), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    animation: shimmer 3s ease-in-out infinite;
+    background-size: 200% auto;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+}
+
+.welcome-tagline {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 60px;
+}
+
+.welcome-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.click-icon {
+    font-size: 1.5rem;
+}
+
+/* ===================================
+   Desktop
+   =================================== */
+.desktop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.desktop.visible {
+    opacity: 1;
+}
+
+/* ===================================
+   Top Panel
+   =================================== */
+.top-panel {
+    height: 32px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 13px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-left,
+.panel-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.activities-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.activities-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.panel-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.panel-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.panel-time {
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.social-link {
+    color: var(--text-primary);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+}
+
+.social-link:hover {
+    opacity: 1;
+    color: var(--ubuntu-orange);
+    transform: scale(1.1);
+}
+
+.social-link svg {
+    fill: currentColor;
+}
+
+.system-tray {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.tray-icon {
+    opacity: 0.7;
+}
+
+.power-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.power-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===================================
+   Desktop Area
+   =================================== */
+.desktop-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 12px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon.selected {
+    background: rgba(233, 84, 32, 0.3);
+}
+
+.icon-image {
+    font-size: 36px;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.icon-label {
+    font-size: 11px;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ===================================
+   Windows
+   =================================== */
+.windows-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.window {
+    position: absolute;
+    min-width: 400px;
+    min-height: 300px;
+    width: 650px;
+    height: 480px;
+    background: var(--window-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-window);
+    display: none;
+    flex-direction: column;
+    pointer-events: auto;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.window.open {
+    display: flex;
+    animation: windowOpen 0.3s ease;
+}
+
+.window.closing {
+    animation: windowClose 0.2s ease forwards;
+}
+
+.window.maximized {
+    width: 100% !important;
+    height: calc(100vh - 32px - 65px) !important;
+    top: 0 !important;
+    left: 0 !important;
+    border-radius: 0;
+}
+
+.window.minimized {
+    display: none;
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes windowClose {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.window-header {
+    height: 38px;
+    background: var(--window-header);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    cursor: move;
+    user-select: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-btn {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.window-btn.close {
+    background: #ff5f57;
+}
+
+.window-btn.close:hover {
+    background: #ff3b30;
+}
+
+.window-btn.minimize {
+    background: #ffbd2e;
+}
+
+.window-btn.minimize:hover {
+    background: #ffcc00;
+}
+
+.window-btn.maximize {
+    background: #28ca42;
+}
+
+.window-btn.maximize:hover {
+    background: #00d42a;
+}
+
+.window-title {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.window-content {
+    flex: 1;
+    overflow: auto;
+    background: rgba(20, 20, 20, 0.5);
+}
+
+/* ===================================
+   About Window
+   =================================== */
+.about-window {
+    padding: 25px;
+}
+
+.explore-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(233, 84, 32, 0.15), rgba(119, 41, 83, 0.15));
+    border: 1px solid rgba(233, 84, 32, 0.3);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    animation: hintGlow 2s ease-in-out infinite;
+}
+
+@keyframes hintGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(233, 84, 32, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(233, 84, 32, 0.25);
+    }
+}
+
+.hint-icon {
+    font-size: 1.4rem;
+}
+
+.hint-text {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.hint-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    transition: var(--transition-fast);
+}
+
+.hint-close:hover {
+    color: var(--ubuntu-orange);
+}
+
+.about-card {
+    max-width: 580px;
+}
+
+.about-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-avatar {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--ubuntu-orange), var(--ubuntu-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 5px 20px rgba(233, 84, 32, 0.3);
+    overflow: hidden;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.about-intro h1 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.about-tagline {
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.about-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    background: rgba(40, 202, 66, 0.1);
+    border: 1px solid rgba(40, 202, 66, 0.3);
+    border-radius: 20px;
+    font-size: 12px;
+    color: #28ca42;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #28ca42;
+    border-radius: 50%;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.about-body>p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.about-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-icon {
+    font-size: 20px;
+}
+
+.detail-item strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 11px;
+    color: var(--ubuntu-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-item p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.about-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.about-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(233, 84, 32, 0.1);
+    border: 1px solid rgba(233, 84, 32, 0.3);
+    border-radius: 8px;
+    color: var(--ubuntu-orange);
+    text-decoration: none;
+    font-size: 13px;
+    transition: var(--transition-fast);
+}
+
+.about-link:hover {
+    background: rgba(233, 84, 32, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ===================================
+   Skills Window
+   =================================== */
+.skills-window {
+    padding: 25px;
+}
+
+.skills-window h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.skill-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-base);
+}
+
+.skill-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.skill-icon {
+    font-size: 1.3rem;
+}
+
+.skill-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.skill-bar-container {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.skill-bar {
+    height: 100%;
+    width: var(--level);
+    background: linear-gradient(90deg, var(--ubuntu-orange), var(--ubuntu-orange-light));
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.skills-section {
+    margin-bottom: 25px;
+}
+
+.skills-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    padding: 8px 16px;
+    background: rgba(233, 84, 32, 0.1);
+    border: 1px solid rgba(233, 84, 32, 0.3);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--ubuntu-orange);
+    transition: var(--transition-fast);
+}
+
+.skill-tag:hover {
+    background: rgba(233, 84, 32, 0.2);
+    transform: translateY(-2px);
+}
+
+.about-gpa {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.project-highlight {
+    color: var(--ubuntu-orange);
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+/* ===================================
+   Projects Window
+   =================================== */
+.projects-window {
+    padding: 25px;
+}
+
+.projects-window h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.project-card {
+    display: flex;
+    gap: 15px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-base);
+}
+
+.project-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(233, 84, 32, 0.3);
+    transform: translateY(-3px);
+}
+
+.project-card.featured {
+    background: linear-gradient(135deg, rgba(233, 84, 32, 0.1), rgba(119, 41, 83, 0.1));
+    border-color: rgba(233, 84, 32, 0.3);
+}
+
+.project-icon {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+}
+
+.project-info h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.project-info>p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.project-tags span {
+    padding: 3px 10px;
+    background: rgba(233, 84, 32, 0.1);
+    border: 1px solid rgba(233, 84, 32, 0.3);
+    border-radius: 12px;
+    font-size: 11px;
+    color: var(--ubuntu-orange);
+}
+
+.project-links {
+    display: flex;
+    gap: 12px;
+}
+
+.project-links a {
+    color: var(--ubuntu-orange);
+    text-decoration: none;
+    font-size: 12px;
+    transition: var(--transition-fast);
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================
+   Experience Window
+   =================================== */
+.experience-window {
+    padding: 25px;
+}
+
+.resume-download {
+    margin-bottom: 25px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--ubuntu-orange);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.download-btn:hover {
+    background: var(--ubuntu-orange-light);
+    transform: translateY(-2px);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 25px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--ubuntu-orange), var(--ubuntu-purple));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -25px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--ubuntu-orange);
+    border-radius: 50%;
+    border: 2px solid var(--window-bg);
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timeline-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.timeline-date {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 12px;
+    color: var(--ubuntu-orange);
+}
+
+.timeline-badge {
+    padding: 2px 8px;
+    background: rgba(40, 202, 66, 0.2);
+    border-radius: 10px;
+    font-size: 10px;
+    color: #28ca42;
+}
+
+.timeline-badge.current {
+    background: rgba(233, 84, 32, 0.2);
+    color: var(--ubuntu-orange);
+}
+
+.timeline-content h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.timeline-company {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.timeline-content ul {
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+.timeline-content li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.timeline-content li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--ubuntu-orange);
+}
+
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.timeline-tags span {
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* ===================================
+   Dock
+   =================================== */
+.dock {
+    height: 58px;
+    background: var(--dock-bg);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 100;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dock-item {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.dock-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.15) translateY(-6px);
+}
+
+.dock-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: var(--ubuntu-orange);
+    border-radius: 50%;
+}
+
+.dock-icon {
+    font-size: 26px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.dock-icon-svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform var(--transition-fast);
+}
+
+.dock-item:hover .dock-icon-svg {
+    transform: scale(1.1);
+}
+
+.dock-separator {
+    width: 1px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 10px;
+}
+
+/* ===================================
+   Power Menu
+   =================================== */
+.power-menu {
+    position: fixed;
+    top: 38px;
+    right: 10px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1000;
+    box-shadow: var(--shadow-window);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.power-menu.open {
+    display: flex;
+    animation: menuSlide 0.2s ease;
+}
+
+@keyframes menuSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.power-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: 13px;
+}
+
+.power-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.power-icon {
+    font-size: 16px;
+}
+
+/* ===================================
+   Responsive
+   =================================== */
+@media (max-width: 768px) {
+    .welcome-name {
+        font-size: 2.5rem;
+    }
+
+    .desktop-icons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .desktop-icon {
+        width: 65px;
+    }
+
+    .window {
+        width: 100% !important;
+        height: calc(100% - 60px) !important;
+        top: 0 !important;
+        left: 0 !important;
+        border-radius: 0;
+        min-width: unset;
+    }
+
+    .dock {
+        height: 50px;
+    }
+
+    .dock-item {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dock-icon {
+        font-size: 22px;
+    }
+
+    .about-details {
+        grid-template-columns: 1fr;
+    }
+
+    .about-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-avatar {
+        margin: 0 auto;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        display: none;
+    }
+}
