@@ -460,8 +460,8 @@ body {
 }
 
 .window-btn {
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -469,21 +469,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
-    font-weight: bold;
-    color: transparent;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.4);
+    line-height: 1;
 }
 
 .window-btn:hover {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .window-btn.close {
     background: #ff5f57;
 }
 
-.window-btn.close::after {
-    content: "×";
+.window-btn.close::before {
+    content: "✕";
+    font-size: 8px;
 }
 
 .window-btn.close:hover {
@@ -494,8 +496,10 @@ body {
     background: #ffbd2e;
 }
 
-.window-btn.minimize::after {
+.window-btn.minimize::before {
     content: "−";
+    font-size: 12px;
+    margin-top: -2px;
 }
 
 .window-btn.minimize:hover {
@@ -506,8 +510,8 @@ body {
     background: #28ca42;
 }
 
-.window-btn.maximize::after {
-    content: "□";
+.window-btn.maximize::before {
+    content: "◻";
     font-size: 8px;
 }
 
