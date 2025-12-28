@@ -466,10 +466,24 @@ body {
     border: none;
     cursor: pointer;
     transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: transparent;
+}
+
+.window-btn:hover {
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .window-btn.close {
     background: #ff5f57;
+}
+
+.window-btn.close::after {
+    content: "×";
 }
 
 .window-btn.close:hover {
@@ -480,12 +494,21 @@ body {
     background: #ffbd2e;
 }
 
+.window-btn.minimize::after {
+    content: "−";
+}
+
 .window-btn.minimize:hover {
     background: #ffcc00;
 }
 
 .window-btn.maximize {
     background: #28ca42;
+}
+
+.window-btn.maximize::after {
+    content: "□";
+    font-size: 8px;
 }
 
 .window-btn.maximize:hover {
